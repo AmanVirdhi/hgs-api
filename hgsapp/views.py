@@ -25,6 +25,9 @@ def login_user(request):
     if not email or not password:
         return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
 
+    print("Email:", email)  # Debug print
+    print("Password:", password)  # Debug print
+
     try:
         # Get the user by email
         user = User.objects.get(email=email)
