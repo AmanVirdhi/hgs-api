@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view # type: ignore
 from rest_framework.response import Response # type: ignore
 from rest_framework import status
-
+from django.contrib.auth import authenticate
 from .models import Grievance
 from .serializers import GrievanceSerializer, SignupSerializer 
 
@@ -10,13 +10,25 @@ from .serializers import GrievanceSerializer, SignupSerializer
 @api_view(['POST'])
 def signup_user(request):
     serializer = SignupSerializer(data=request.data)
-    print("leel", request.data)
   
     if serializer.is_valid():
         serializer.save()  # This will hash the password due to the save method in your model
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    print("leel", serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def login_user(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+    
+    # Check if user credentials are correct
+    user = authenticate(username=email, password=password)
+    
+    if user is not None:
+        # Generate a token or send user details (as per your requirement)
+        return Response({'token': 'your_token', 'user': user.username}, status=status.HTTP_200_OK)
+    else:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
 
 @api_view(['GET'])
