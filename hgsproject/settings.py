@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hgsapp.wsgi.application'
+WSGI_APPLICATION = 'hgsproject.wsgi.application'
 
 
 # Database
