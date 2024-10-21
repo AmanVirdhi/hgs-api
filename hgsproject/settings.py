@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1yo)(+sk@(r%h9-2y!1vp+1na@=e++p4)@s2_%*-_!($#7rqj)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hgsproject.wsgi.application'
+WSGI_APPLICATION = 'hgsapp.wsgi.application'
 
 
 # Database
