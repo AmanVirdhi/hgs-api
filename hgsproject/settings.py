@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'hgsapp',
     'rest_framework',
     'corsheaders',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
